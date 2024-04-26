@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ads;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
@@ -11,7 +12,16 @@ class PostController extends Controller
 {
     public function index()
     {
-        $randomNumber = random_int(1, 10);
+        $adsCount = Ads::count();
+        
+        if ($adsCount > 0) {
+            // Jika ada, ambil post_id dari entri acak
+            $RandomPostId = Ads::all()->random()->post_id;
+        } else {
+            // Jika tidak ada, berikan nilai default atau lakukan tindakan lain sesuai kebutuhan aplikasi Anda
+            $RandomPostId = null; // Nilai default jika tidak ada entri tersedia
+        }
+
         $title = '';
 
         if (request('category')) {
@@ -28,8 +38,10 @@ class PostController extends Controller
             "title" => "All Posts" . $title,
             "name" => "Posts",
             "active" => 'community',
-            "ads" => $randomNumber,
+            "random" => $RandomPostId - 1,
+            "ads" => Post::all(),
             "posts" => Post::latest()->filter(request(['search', 'category', 'author']))->paginate(6)->withQueryString()
+
         ]);
     }
 

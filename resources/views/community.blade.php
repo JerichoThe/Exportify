@@ -1,30 +1,31 @@
 @extends('layouts.main')
 
 @section('container')
-   @if (isset($posts[$ads]))
+
+   @if (isset($ads[$random]))
       <div class="card mb-3">
-         <div class="position-absolute px-3 py-2 text-white" style="background-color: rgba(0, 0, 0, 0.7)">Ads</div>
-         @if ($posts[$ads]->image)
+         <div class="position-absolute px-3 py-2 text-white" style="background-color: #388E3C">Ads</div>
+         @if ($ads[$random]->image)
             <div style="max-height: 350px; overflow: hidden;">
-               <img src="{{ asset('storage/' . $posts[$ads]->image) }}" class="img-fluid"
-                  alt="{{ $posts[$ads]->category->name }}">
+               <img src="{{ asset('storage/' . $ads[$random]->image) }}" class="img-fluid"
+                  alt="{{ $ads[$random]->category->name }}">
             </div>
          @else
-            <img src="https://source.unsplash.com/1200x400?{{ $posts[$ads]->category->name }}" class="img-fluid"
-               alt="{{ $posts[$ads]->category->name }}">
+            <img src="https://source.unsplash.com/1200x400?{{ $ads[$random]->category->name }}" class="img-fluid"
+               alt="{{ $ads[$random]->category->name }}">
          @endif
          <div class="card-body text-center">
-            <h5 class="card-title"><a href="/posts/{{ $posts[$ads]->slug }}"
-                  class="text-decoration-none text-dark">{{ $posts[$ads]->title }}</a></h5>
+            <h5 class="card-title"><a href="/posts/{{ $ads[$random]->slug }}"
+                  class="text-decoration-none text-dark">{{ $ads[$random]->title }}</a></h5>
             <p>
-               <small class="text-muted">By <a href="/community?author={{ $posts[$ads]->author->username }}"
-                     class="text-decoration-none">{{ $posts[$ads]->author->name }}</a> in <a
-                     href="/community?category={{ $posts[$ads]->category->slug }}">{{ $posts[$ads]->category->name }}</a>
-                  - {{ $posts[$ads]->created_at->diffForHumans() }}
+               <small class="text-muted">By <a href="/community?author={{ $ads[$random]->author->username }}"
+                     class="text-decoration-none">{{ $ads[$random]->author->name }}</a> in <a
+                     href="/community?category={{ $ads[$random]->category->slug }}">{{ $ads[$random]->category->name }}</a>
+                  - {{ $ads[$random]->created_at->diffForHumans() }}
                </small>
             </p>
-            <p class="card-text">{{ $posts[$ads]->excerpt }}</p>
-            <a href="/posts/{{ $posts[$ads]->slug }}" class="text-decoration-none btn btn-primary">Read More</a>
+            <p class="card-text">{{ $ads[$random]->excerpt }}</p>
+            <a href="/posts/{{ $ads[$random]->slug }}" class="text-decoration-none btn btn-primary">Read More</a>
          </div>
       </div>
    @endif

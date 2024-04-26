@@ -12,7 +12,11 @@ class Category extends Model
 
     public function posts(){
         return $this->hasMany(Post::class);
-    }    
+    }
+    public function ads()
+    {
+        return $this->hasMany(Ads::class);
+    }
     public function getRouteKeyName()
     {
         return 'slug';
