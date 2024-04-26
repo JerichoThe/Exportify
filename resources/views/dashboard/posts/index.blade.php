@@ -48,21 +48,17 @@
                         <button class="badge bg-danger border-0" onclick="return confirm('Are You Sure?')"><span
                               data-feather="x"></span></button>
                      </form>
-
-                     @if (auth()->user()->id == $post->author->id)
-                        <form action="/ads" method="post" class="mt-2">
-                           @csrf
-                           <input type="hidden" name="user_id" value="{{ $post->author->id }}">
-                           <input type="hidden" name="category_id" value="{{ $post->category->id }}">
-                           <input type="hidden" name="post_id" value="{{ $post->id }}">
-                           <button type="submit" class="badge bg-success border-0"><span
-                                 data-feather="dollar-sign"></span></button>
-                        </form>
-                     @endif
+                     <button class="badge bg-success border-0 open-popup"><span data-feather="dollar-sign"></span></button>
                   </td>
                </tr>
             @endforeach
          </tbody>
       </table>
+   </div>
+   <div id="popup" class="popup">
+      <div class="popup-content">
+         <span class="close">&times;</span>
+         @include('dashboard.posts.pricing.pricing')
+      </div>
    </div>
 @endsection
