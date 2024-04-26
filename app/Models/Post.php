@@ -48,6 +48,11 @@ class Post extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function ads()
+    {
+        return $this->hasOne(Ads::class, 'post_id');
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';
