@@ -1,9 +1,10 @@
 $(document).ready(function () {
     $(".open-popup").click(function () {
-        $("#popup").fadeIn();
+        var targetPopup = $(this).data('target-popup');
+        $("#" + targetPopup).fadeIn(); 
     });
 
     $(".close").click(function () {
-        $("#popup").fadeOut();
+        $(this).closest(".popup").fadeOut(); 
     });
 });
