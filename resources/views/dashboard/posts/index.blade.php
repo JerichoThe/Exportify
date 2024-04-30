@@ -48,17 +48,18 @@
                         <button class="badge bg-danger border-0" onclick="return confirm('Are You Sure?')"><span
                               data-feather="x"></span></button>
                      </form>
-                     <button class="badge bg-success border-0 open-popup"><span data-feather="dollar-sign"></span></button>
+                     <button class="badge bg-success border-0 open-popup"
+                        data-target-popup="popup-{{ $post->id }}"><span data-feather="dollar-sign"></span></button>
+                     <div id="popup-{{ $post->id }}" class="popup">
+                        <div class="popup-content">
+                           <span class="close">&times;</span>
+                           @include('dashboard.posts.pricing.pricing')
+                        </div>
+                     </div>
                   </td>
                </tr>
             @endforeach
          </tbody>
       </table>
-   </div>
-   <div id="popup" class="popup">
-      <div class="popup-content">
-         <span class="close">&times;</span>
-         @include('dashboard.posts.pricing.pricing')
-      </div>
    </div>
 @endsection

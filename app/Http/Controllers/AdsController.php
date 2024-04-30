@@ -44,16 +44,29 @@ class AdsController extends Controller
             'user_id' => 'required|integer',
             'category_id' => 'required|integer',
             'post_id' => 'required|integer',
+            'role' => 'required|in:1,2,3',
+            'day' => 'integer'
         ]);
 
-        // $expirationTime = Carbon::now()->addHours(1);
-        $expirationTime = Carbon::now()->addMinutes(1);
+        $expirationTime = null;
+        switch ($validatedData['role']) {
+            case '1':
+                $expirationTime = Carbon::now()->addDays(1);
+                break;
+            case '2':
+                $expirationTime = Carbon::now()->addWeeks(1);
+                break;
+            case '3':
+                $expirationTime = Carbon::now()->addMonths($validatedData['day']);
+                break;
+            default:
+                return back()->with('error', 'Invalid role selected');
+        }
         // $now = Carbon::now()->toDateTimeString();
         // dd($now, $expirationTime->toDateTimeString());
 
-        // Simpan iklan jika post unik
-        
         $isUnique = !Ads::where('post_id', $request->post_id)->exists();
+
         if ($isUnique) {
             $ads = new Ads();
             $ads->user_id = $validatedData['user_id'];
