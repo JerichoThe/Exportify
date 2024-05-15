@@ -40,7 +40,7 @@ class PostController extends Controller
             "active" => 'community',
             "random" => $RandomPostId - 1,
             "ads" => Post::all(),
-            "posts" => Post::latest()->filter(request(['search', 'category', 'author']))->paginate(6)->withQueryString()
+            "posts" => Post::latest()->filter(request(['search', 'category', 'author']))->paginate(12)->withQueryString()
 
         ]);
     }
