@@ -42,6 +42,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
     public function ads()
     {
         return $this->hasMany(Ads::class);

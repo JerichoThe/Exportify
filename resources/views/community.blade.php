@@ -51,8 +51,8 @@
       <div class="container">
          <div class="row">
             @foreach ($posts as $post)
-               <div class="col-md-4">
-                  <div class="card mb-4">
+               <div class="col-md-3">
+                  <div class="card mb-3">
                      <div class="position-absolute px-3 py-2 text-white" style="background-color: rgba(0, 0, 0, 0.7)"><a
                            href="/community?category={{ $post->category->slug }}"
                            class="text-decoration-none text-white">{{ $post->category->name }}</a></div>

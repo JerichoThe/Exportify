@@ -9,7 +9,7 @@
                   class="text-decoration-none">{{ $post->author->name }}</a>: <a
                   href="//community?category={{ $post->category->slug }}"
                   class="text-decoration-none">{{ $post->category->name }}</a>
-            </p>
+            <br>Email: <a href="mailto:{{ $post->author->email }}" style="text-decoration: none">{{ $post->author->email }}</a></p>
             @if ($post->image)
                <div style="max-height: 350px; overflow: hidden;">
                   <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid mt-3"
@@ -22,9 +22,16 @@
             <article class="my-3 fs-5">
                <p>{!! $post->body !!}</p>
             </article>
-
-            <a href="/community" class="d-block mb-5">back to community</a>
+            <div class="row justify-content-between mb-3">
+               <div class="col-md-6">
+                   <a href="/community" class="btn btn-lg btn-danger">Back to Community</a>
+               </div>
+               <div class="col-md-6 justify-content-end d-flex">
+                   <a href="mailto:{{ $post->author->email }}" style="text-decoration: none" class="btn btn-lg btn-primary float-md-right">Contact {{ $post->author->username }}</a>
+               </div>
+           </div>
          </div>
       </div>
    </div>
+  
 @endsection

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Models\User;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
@@ -90,5 +91,10 @@ Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'check
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
 
 Route::resource('/dashboard/categories', CategoryController::class)->except('show')->middleware('admin');
+Route::resource('/dashboard/user/order', OrderController::class)->except('show')->middleware('auth');
 
 Route::post('/ads', [AdsController::class, 'store'])->name('ads.store');
+Route::get('/dashboard/ads/active', [AdsController::class, 'index'])->middleware('auth');
+
+Route::get('/dashboard/order/rejected', [OrderController::class, 'rejected'])->middleware('auth');
+Route::get('/dashboard/order/history', [OrderController::class, 'history'])->middleware('auth');

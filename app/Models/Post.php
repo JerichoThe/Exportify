@@ -50,7 +50,7 @@ class Post extends Model
 
     public function ads()
     {
-        return $this->hasOne(Ads::class, 'post_id');
+        return $this->hasOne(Ads::class);
     }
 
     public function getRouteKeyName()
@@ -64,5 +64,9 @@ class Post extends Model
                 'source' => 'title'
             ]
         ];
+    }
+    public function orders()
+    {
+        return $this->hasOne(Order::class);
     }
 }
