@@ -25,11 +25,11 @@
                </small>
             </p>
             <p class="card-text">{{ $ads[$random]->excerpt }}</p>
-            <a href="/posts/{{ $ads[$random]->slug }}" class="text-decoration-none btn btn-primary">Read More</a>
+            <a href="/posts/{{ $ads[$random]->slug }}" class="text-decoration-none btn btn-danger">Read More</a>
          </div>
       </div>
    @endif
-   <h1 class="mb-5 mt-3 text-center">{{ $title }} :</h1>
+   <h1 class="mb-5 mt-3 text-center text-light">{{ $title }} :</h1>
    <div class="row justify-content-center">
       <div class="col-md-6">
          <form action="/community">
@@ -65,7 +65,7 @@
                         <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}" class="img-fluid"
                            alt="{{ $post->category->name }}">
                      @endif
-                     <div class="card-body">
+                     {{-- <div class="card-body" style="min-height: 350px;">
                         <h5 class="card-title">{{ $post->title }}</h5>
                         <p>
                            <small class="text-muted">By <a href="/community?author={{ $post->author->username }}"
@@ -74,8 +74,21 @@
                            </small>
                         </p>
                         <p class="card-text">{{ $post->excerpt }}</p>
-                        <a href="/posts/{{ $post->slug }}" class="btn btn-primary">Read More...</a>
-                     </div>
+                        <div class="card-body d-flex flex-column mt-auto">
+                           <!-- Konten card-body di sini -->
+                           <a href="/posts/{{ $post->slug }}" class="btn btn-success">Read More...</a>
+                       </div>
+                     </div> --}}
+                     <div class="card-body d-flex flex-column" style="min-height: 330px;">
+                        <h5 class="card-title">{{ $post->title }}</h5>
+                        <p>
+                            <small class="text-muted">By <a href="/community?author={{ $post->author->username }}" class="text-decoration-none">{{ $post->author->name }}</a> - {{ $post->created_at->diffForHumans() }}</small>
+                        </p>
+                        <p class="card-text">{{ $post->excerpt }}</p>
+                        <div class="mt-auto">
+                            <a href="/posts/{{ $post->slug }}" class="btn btn-success">Read More...</a>
+                        </div>
+                    </div>
                   </div>
                </div>
             @endforeach
@@ -85,5 +98,7 @@
       <p class="text-center fs-4 ">No Post Found.</p>
    @endif
 
-   {{ $posts->links() }}
+   <div class="custom-paginator">
+      {{ $posts->links() }}
+  </div>
 @endsection

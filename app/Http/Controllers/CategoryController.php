@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('name')->get();
         return view('dashboard.categories.index', [
             'categories' => $categories
         ]);

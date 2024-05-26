@@ -54,7 +54,7 @@ Route::get('/categories', function () {
     return view('categories', [
         'title' => 'Post Categories',
         'active' => 'categories',
-        'categories' => Category::all()
+        'categories' => Category::orderBy('name')->get()
     ]);
 })->middleware('auth');
 
