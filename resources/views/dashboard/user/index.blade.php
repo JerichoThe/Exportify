@@ -70,5 +70,5 @@
       @endif
    </div>
 
-   {{ $orders->links() }}
+   {{-- {{ $orders->links() }} --}}
 @endsection

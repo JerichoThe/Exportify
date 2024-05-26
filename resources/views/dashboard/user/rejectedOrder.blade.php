@@ -9,7 +9,6 @@
          <div class="container">
             <div class="row">
                @foreach ($rejectedOrders as $reject)
-                  @if ($reject->status == 'reject')
                      <div class="col-md-4">
                         <div class="card mb-4">
                            <div class="card-body" style="border: 1.5px solid red;">
@@ -24,7 +23,6 @@
                            </div>
                         </div>
                      </div>
-                  @endif
                @endforeach
             </div>
          </div>

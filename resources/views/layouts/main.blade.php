@@ -21,7 +21,11 @@
    <title>Exportify | {{ $title }}</title>
 </head>
 
-<body>
+@if (!request()->is('login') && !request()->is('register'))
+   <body style="background-image: url('/images/2.jpeg'); background-size: cover; background-repeat: no-repeat; backdrop-filter: blur(7px);">
+@else
+   <body>
+@endif
    @include('partials.navbar')
    <div class="container mt-4">
       @yield('container')

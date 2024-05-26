@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #388E3C;">
+<nav id="navbar" class="navbar navbar-expand-lg navbar-dark" style="background-image: url('/images/navbar.png'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
    <div class="container">
       <a class="navbar-brand" href="/home">Exportify.</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"

@@ -20,8 +20,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::where('user_id', auth()->user()->id)->paginate(12)->withQueryString();
-        $allOrders = Order::latest()->paginate(12)->withQueryString();
+        $orders = Order::where('user_id', auth()->user()->id)->oldest()->paginate(12)->withQueryString();
+        $allOrders = Order::oldest()->paginate(12)->withQueryString();
         if (Auth::user()->name == 'admin') {
             return view('dashboard.user.index', [
                 'orders' => $allOrders
@@ -106,9 +106,17 @@ class OrderController extends Controller
      */
     public function rejected()
     {
-        $adminRejectedOrders = Order::with('posts', 'author')->paginate(12)->withQueryString();
-        $userRejectedOrders = Order::with('posts', 'author')->
-            where('user_id', auth()->user()->id)->paginate(12)->withQueryString();
+        $adminRejectedOrders = Order::with('posts', 'author')
+            ->where('status', 'reject')
+            ->latest()
+            ->paginate(9)
+            ->withQueryString();
+        $userRejectedOrders = Order::with('posts', 'author')
+            ->where('user_id', auth()->user()->id)
+            ->where('status', 'reject')
+            ->latest()
+            ->paginate(9)
+            ->withQueryString();
 
         if (Auth::user()->name == 'admin') {
             return view('dashboard.user.rejectedOrder', [
@@ -129,9 +137,20 @@ class OrderController extends Controller
      */
     public function history()
     {
-        $adminHistoryOrders = Order::with('posts', 'author')->paginate(12)->withQueryString();
-        $userHistoryOrders = Order::with('posts', 'author')->
-            where('user_id', auth()->user()->id)->paginate(12)->withQueryString();
+        $adminHistoryOrders = Order::with('posts', 'author')
+            ->whereNotNull('removed_at')
+            ->latest()
+            ->paginate(9)
+            ->withQueryString();
+
+        $userHistoryOrders = Order::with('posts', 'author')
+            ->where('user_id', auth()->user()->id)
+            ->whereNotNull('removed_at')->latest()
+            ->paginate(9)
+            ->withQueryString();
+        ;
+
+
 
         if (Auth::user()->name == 'admin') {
             return view('dashboard.admin.history', [
