@@ -1,15 +1,18 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\OrderController;
 use App\Models\User;
 use App\Models\Category;
+use App\Events\MessageSent;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdsController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardPostController;
-use App\Http\Controllers\AdsController;
 
 
 /*
@@ -59,10 +62,10 @@ Route::get('/categories', function () {
 })->middleware('auth');
 
 Route::get('/categories/{category:slug}', function (Category $category) {
-    return view('community', [
-        'title' => "Post By Category: $category->name",
-        'active' => 'categories',
-        'posts' => $category->posts->load('category', 'author'),
+    return view('partials.choice', [
+        'title' => "Category: $category->name",
+        'category' => $category,
+        'active' => 'categories'
     ]);
 });
 
@@ -75,6 +78,27 @@ Route::get('/authors/{author:username}', function (User $author) {
         'posts' => $author->posts->load('category', 'author'),
     ]);
 });
+// Route::get('/chat/{category:slug}',function (Category $category){
+//     return view('publicChat', [
+//         'category' => $category->name,
+//         'user' => Auth::user()
+//     ]);
+// });
+
+// Route::post('/send-message', function (Request $request) {
+//     $message = $request->input('message');
+//     $user = $request->input('user');
+
+//     event(new MessageSent($user, $message));
+
+//     return response()->json(['status' => 'Message Sent!']);
+// });
+
+// Route::post('/send-message', [ChatController::class, 'sendMessage']);
+
+Route::get('/chat/{category}', [ChatController::class, 'showChat'])->middleware('auth');
+Route::post('/send-message/{category}', [ChatController::class, 'sendMessage']);
+Route::post('/delete-messages/{category}', [ChatController::class, 'deleteMessages']);
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);

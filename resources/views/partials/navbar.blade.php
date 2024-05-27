@@ -17,7 +17,7 @@
                <a class="nav-link {{ $active === 'community' ? 'active' : '' }}" href="/community">Community</a>
             </li>
             <li class="nav-item">
-               <a class="nav-link {{ $active === 'categories' ? 'active' : '' }}" href="/categories">Categories</a>
+               <a class="nav-link {{ $active === 'categories' ? 'active' : '' }}" href="/categories">Categories & Forum</a>
             </li>
          </ul>
          <ul class="navbar-nav ms-auto">

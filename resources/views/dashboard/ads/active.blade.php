@@ -26,7 +26,7 @@
             </div>
          </div>
       @else
-         <p class="text-center fs-4 ">No Active Order Found.</p>
+         <p class="text-center fs-4 ">No Active Ads Found.</p>
       @endif
    </div>
 
