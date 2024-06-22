@@ -4,9 +4,11 @@ use App\Models\User;
 use App\Models\Category;
 use App\Events\MessageSent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdsController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderController;
@@ -26,20 +28,9 @@ use App\Http\Controllers\DashboardPostController;
 |
 */
 
-// Route::get('/', [LoginController::class, 'index']);
-Route::get('/', function () {
-    return view('home', [
-        "title" => "Home",
-        'active' => 'home',
-    ]);
-});
+Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/home', function () {
-    return view('home', [
-        "title" => "Home",
-        'active' => 'home',
-    ]);
-});
+Route::get('/home', [HomeController::class, 'index']);
 
 Route::get('/about', function () {
     return view('aboutUs', [
@@ -69,7 +60,7 @@ Route::get('/categories/{category:slug}', function (Category $category) {
     ]);
 });
 
-Route::get('/authors/{author:username}', function (User $author) {
+Route::get('/authors/{author:name}', function (User $author) {
     $randomNumber = random_int(1, 5);
     return view('community', [
         'title' => "Post By:  $author->name",
@@ -78,23 +69,6 @@ Route::get('/authors/{author:username}', function (User $author) {
         'posts' => $author->posts->load('category', 'author'),
     ]);
 });
-// Route::get('/chat/{category:slug}',function (Category $category){
-//     return view('publicChat', [
-//         'category' => $category->name,
-//         'user' => Auth::user()
-//     ]);
-// });
-
-// Route::post('/send-message', function (Request $request) {
-//     $message = $request->input('message');
-//     $user = $request->input('user');
-
-//     event(new MessageSent($user, $message));
-
-//     return response()->json(['status' => 'Message Sent!']);
-// });
-
-// Route::post('/send-message', [ChatController::class, 'sendMessage']);
 
 Route::get('/chat/{category}', [ChatController::class, 'showChat'])->middleware('auth');
 Route::post('/send-message/{category}', [ChatController::class, 'sendMessage']);

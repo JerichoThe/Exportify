@@ -21,8 +21,9 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::where('user_id', auth()->user()->id)->oldest()->paginate(12)->withQueryString();
-        $allOrders = Order::oldest()->paginate(12)->withQueryString();
+        $allOrders = Order::all();
         if (Auth::user()->name == 'admin') {
+            // dd($allOrders);
             return view('dashboard.user.index', [
                 'orders' => $allOrders
             ]);

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -18,10 +19,16 @@ class DatabaseSeeder extends Seeder
     {
         User::create([
             'name' => 'admin',
-            'username' => 'admin',
+            'company_address' => 'Jl. Berangkas Sari No. 12',
             'email' => 'admin@gmail.com',
-            'is_admin' => '1',
+            'role' => '0',
             'password' => bcrypt('admin')
+        ]);
+        Role::create([
+            'role_type' => 'Exporter'
+        ]);
+        Role::create([
+            'role_type' => 'Importer'
         ]);
 
         // User::create([
@@ -31,6 +38,11 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         User::factory(5)->create();
+
+        Category::create([
+            'name' => 'News',
+            'slug' => 'news'
+        ]);
 
         Category::create([
             'name' => 'Mining',
@@ -62,33 +74,67 @@ class DatabaseSeeder extends Seeder
             'slug' => 'seed'
         ]);
 
+        Category::create([
+            'name' => 'Local Snack',
+            'slug' => 'local-snack'
+        ]);
+
+        Category::create([
+            'name' => 'Local Product',
+            'slug' => 'local-product'
+        ]);
+
+        Category::create([
+            'name' => 'Poultry',
+            'slug' => 'poultry'
+        ]);
+
+
+        Post::create([
+            'title' => 'Paduan Expor Impor',
+            'slug' => 'paduan-expor-impor',
+            'excerpt' => 'lorem ipsum bla bla bla',
+            'body' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. A ad, voluptatibus facilis suscipit amet ipsum quia non minus architecto laborum necessitatibus beatae corporis rem eaque aut iusto adipisci numquam temporibus.Lorem ipsum dolor, sit amet consectetur adipisicing elit. A ad, voluptatibus facilis suscipit amet ipsum quia non minus architecto laborum necessitatibus beatae corporis rem eaque aut iusto adipisci numquam temporibus.',
+            'category_id' => 1,
+            'user_id' => 1
+        ]);
+
+        Post::create([
+            'title' => 'Paduan Expor Impor',
+            'slug' => 'paduan-expor-impor1',
+            'excerpt' => 'lorem ipsum bla bla bla',
+            'body' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. A ad, voluptatibus facilis suscipit amet ipsum quia non minus architecto laborum necessitatibus beatae corporis rem eaque aut iusto adipisci numquam temporibus.Lorem ipsum dolor, sit amet consectetur adipisicing elit. A ad, voluptatibus facilis suscipit amet ipsum quia non minus architecto laborum necessitatibus beatae corporis rem eaque aut iusto adipisci numquam temporibus.',
+            'category_id' => 1,
+            'user_id' => 1
+        ]);
+
+        Post::create([
+            'title' => 'Paduan Expor Impor',
+            'slug' => 'paduan-expor-impor2',
+            'excerpt' => 'lorem ipsum bla bla bla',
+            'body' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. A ad, voluptatibus facilis suscipit amet ipsum quia non minus architecto laborum necessitatibus beatae corporis rem eaque aut iusto adipisci numquam temporibus.Lorem ipsum dolor, sit amet consectetur adipisicing elit. A ad, voluptatibus facilis suscipit amet ipsum quia non minus architecto laborum necessitatibus beatae corporis rem eaque aut iusto adipisci numquam temporibus.',
+            'category_id' => 1,
+            'user_id' => 1
+        ]);
+
+        Post::create([
+            'title' => 'Paduan Expor Impor',
+            'slug' => 'paduan-expor-impor3',
+            'excerpt' => 'lorem ipsum bla bla bla',
+            'body' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. A ad, voluptatibus facilis suscipit amet ipsum quia non minus architecto laborum necessitatibus beatae corporis rem eaque aut iusto adipisci numquam temporibus.Lorem ipsum dolor, sit amet consectetur adipisicing elit. A ad, voluptatibus facilis suscipit amet ipsum quia non minus architecto laborum necessitatibus beatae corporis rem eaque aut iusto adipisci numquam temporibus.',
+            'category_id' => 1,
+            'user_id' => 1
+        ]);
+
+        Post::create([
+            'title' => 'Paduan Expor Impor',
+            'slug' => 'paduan-expor-impor4',
+            'excerpt' => 'lorem ipsum bla bla bla',
+            'body' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. A ad, voluptatibus facilis suscipit amet ipsum quia non minus architecto laborum necessitatibus beatae corporis rem eaque aut iusto adipisci numquam temporibus.Lorem ipsum dolor, sit amet consectetur adipisicing elit. A ad, voluptatibus facilis suscipit amet ipsum quia non minus architecto laborum necessitatibus beatae corporis rem eaque aut iusto adipisci numquam temporibus.',
+            'category_id' => 1,
+            'user_id' => 1
+        ]);
+
         Post::factory(20)->create();
-
-        // Post::create([
-        //     'title' => 'Batu Bara',
-        //     'slug' => 'batu-bara',
-        //     'excerpt' => 'lorem ipsum bla bla bla',
-        //     'body' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. A ad, voluptatibus facilis suscipit amet ipsum quia non minus architecto laborum necessitatibus beatae corporis rem eaque aut iusto adipisci numquam temporibus.Lorem ipsum dolor, sit amet consectetur adipisicing elit. A ad, voluptatibus facilis suscipit amet ipsum quia non minus architecto laborum necessitatibus beatae corporis rem eaque aut iusto adipisci numquam temporibus.',
-        //     'category_id' => 1,
-        //     'user_id' => 1
-        // ]);
-
-        // Post::create([
-        //     'title' => 'Nikel',
-        //     'slug' => 'nikel',
-        //     'excerpt' => 'lorem ipsum bla bla bla',
-        //     'body' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. A ad, voluptatibus facilis suscipit amet ipsum quia non minus architecto laborum necessitatibus beatae corporis rem eaque aut iusto adipisci numquam temporibus.Lorem ipsum dolor, sit amet consectetur adipisicing elit. A ad, voluptatibus facilis suscipit amet ipsum quia non minus architecto laborum necessitatibus beatae corporis rem eaque aut iusto adipisci numquam temporibus.',
-        //     'category_id' => 1,
-        //     'user_id' => 1
-        // ]);
-
-        // Post::create([
-        //     'title' => 'Kentang',
-        //     'slug' => 'kentang',
-        //     'excerpt' => 'lorem ipsum bla bla bla',
-        //     'body' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. A ad, voluptatibus facilis suscipit amet ipsum quia non minus architecto laborum necessitatibus beatae corporis rem eaque aut iusto adipisci numquam temporibus.Lorem ipsum dolor, sit amet consectetur adipisicing elit. A ad, voluptatibus facilis suscipit amet ipsum quia non minus architecto laborum necessitatibus beatae corporis rem eaque aut iusto adipisci numquam temporibus.',
-        //     'category_id' => 2,
-        //     'user_id' => 2
-        // ]);
     }
 }

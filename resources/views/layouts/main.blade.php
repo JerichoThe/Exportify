@@ -17,6 +17,7 @@
 
    {{-- Style Css --}}
    <link rel="stylesheet" href="/css/style.css">
+   <link rel="stylesheet" href="/css/carousel.css">
 
    {{-- Pusher Script --}}
    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
@@ -84,6 +85,17 @@
       });
    </script>
 @endif
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Owl Carousel -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+<script src="/js/carousel.js"></script>
 </body>
 @if (!request()->is('login') && !request()->is('register'))
    @include('partials.footer')

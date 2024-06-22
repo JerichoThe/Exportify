@@ -50,4 +50,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Ads::class);
     }
+    public function roles(){
+        return $this->belongsTo(Role::class);
+    }
 }

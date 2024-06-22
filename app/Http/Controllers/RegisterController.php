@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -11,9 +12,11 @@ class RegisterController extends Controller
 {
     public function create()
     {
+        $roles = Role::all();
         return view('register.index', [
             'title' => 'register',
-            'active' => 'register'
+            'active' => 'register',
+            'roles' => $roles
         ]);
     }
 
@@ -21,9 +24,10 @@ class RegisterController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|min:5|max:255',
-            'username' => 'required|min:5|max:255|unique:users',
             'email' => 'required|email:dns|unique:users',
-            'password' => 'required|min:5|max:255'
+            'company_address' => 'required',
+            'password' => 'required|min:5|max:255',
+            'role' => 'required'
         ]);
 
         $validatedData['password'] = Hash::make($validatedData['password']);

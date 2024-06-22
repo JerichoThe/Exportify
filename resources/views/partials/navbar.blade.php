@@ -1,4 +1,5 @@
-<nav id="navbar" class="navbar navbar-expand-lg navbar-dark" style="background-image: url('/images/navbar.png'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
+<nav id="navbar" class="navbar navbar-expand-lg navbar-dark"
+   style="background-image: url('/images/navbar.png'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
    <div class="container">
       <a class="navbar-brand" href="/home">Exportify.</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -17,7 +18,8 @@
                <a class="nav-link {{ $active === 'community' ? 'active' : '' }}" href="/community">Community</a>
             </li>
             <li class="nav-item">
-               <a class="nav-link {{ $active === 'categories' ? 'active' : '' }}" href="/categories">Categories & Forum</a>
+               <a class="nav-link {{ $active === 'categories' ? 'active' : '' }}" href="/categories">Categories &
+                  Forum</a>
             </li>
          </ul>
          <ul class="navbar-nav ms-auto">
@@ -28,10 +30,12 @@
                      Welcome Back, {{ auth()->user()->name }}
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                     <li><a class="dropdown-item" href="/dashboard"><i class="bi bi-person-gear"></i> My Dashboard</a></li>
-                     <li>
-                        <hr class="dropdown-divider">
-                     </li>
+                     @cannot('importer')
+                        <li><a class="dropdown-item" href="/dashboard"><i class="bi bi-person-gear"></i> User Management</a></li>
+                        <li>
+                           <hr class="dropdown-divider">
+                        </li>
+                     @endcan
                      <li>
                         <form action="/logout" method="post">
                            @csrf
