@@ -13,7 +13,7 @@ class PostController extends Controller
     public function index()
     {
         $adsCount = Ads::count();
-        
+
         if ($adsCount > 0) {
             // Jika ada, ambil post_id dari entri acak
             $RandomPostId = Ads::all()->random()->post_id;
@@ -30,7 +30,7 @@ class PostController extends Controller
         }
 
         if (request('author')) {
-            $author = User::firstWhere('username', request('author'));
+            $author = User::firstWhere('name', request('author'));
             $title = ' by ' . $author->name;
         }
 
@@ -40,7 +40,9 @@ class PostController extends Controller
             "active" => 'community',
             "random" => $RandomPostId - 1,
             "ads" => Post::all(),
-            "posts" => Post::latest()->filter(request(['search', 'category', 'author']))->paginate(12)->withQueryString()
+            "posts" => Post::latest()->whereHas('author', function ($query) {
+                $query->where('role', '!=', 'admin');
+            })->filter(request(['search', 'category', 'author']))->paginate(12)->withQueryString()
 
         ]);
     }

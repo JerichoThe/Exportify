@@ -35,7 +35,9 @@
                            alt="{{ $post->category->name }}">
                      </div>
                   @else
-                     <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}" class="img-fluid"
+                     {{-- <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}" class="img-fluid"
+                        alt="{{ $post->category->name }}"> --}}
+                     <img src="https://loremflickr.com/1200/400/{{ $post->category->slug }}" class="img-fluid"
                         alt="{{ $post->category->name }}">
                   @endif
                   <div class="card-body d-flex flex-column" style="min-height: 300px;">

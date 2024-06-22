@@ -11,14 +11,16 @@
                   alt="{{ $ads[$random]->category->name }}">
             </div>
          @else
-            <img src="https://source.unsplash.com/1200x400?{{ $ads[$random]->category->name }}" class="img-fluid"
+            {{-- <img src="https://source.unsplash.com/1200x400?{{ $ads[$random]->category->slug }}" class="img-fluid"
+               alt="{{ $ads[$random]->category->name }}"> --}}
+            <img src="https://loremflickr.com/1200/400/{{ $ads[$random]->category->slug }}" class="img-fluid"
                alt="{{ $ads[$random]->category->name }}">
          @endif
          <div class="card-body text-center">
             <h5 class="card-title"><a href="/posts/{{ $ads[$random]->slug }}"
                   class="text-decoration-none text-dark">{{ $ads[$random]->title }}</a></h5>
             <p>
-               <small class="text-muted">By <a href="/community?author={{ $ads[$random]->author->username }}"
+               <small class="text-muted">By <a href="/community?author={{ $ads[$random]->author->name }}"
                      class="text-decoration-none">{{ $ads[$random]->author->name }}</a> in <a
                      href="/community?category={{ $ads[$random]->category->slug }}">{{ $ads[$random]->category->name }}</a>
                   - {{ $ads[$random]->created_at->diffForHumans() }}
@@ -62,27 +64,15 @@
                               alt="{{ $post->category->name }}">
                         </div>
                      @else
-                        <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}" class="img-fluid"
+                        {{-- <img src="https://source.unsplash.com/1200x400?{{ $post->category->slug }}" class="img-fluid"
+                           alt="{{ $post->category->name }}"> --}}
+                        <img src="https://loremflickr.com/1200/400/{{ $post->category->slug }}" class="img-fluid"
                            alt="{{ $post->category->name }}">
                      @endif
-                     {{-- <div class="card-body" style="min-height: 350px;">
-                        <h5 class="card-title">{{ $post->title }}</h5>
-                        <p>
-                           <small class="text-muted">By <a href="/community?author={{ $post->author->username }}"
-                                 class="text-decoration-none">{{ $post->author->name }}</a>
-                              - {{ $post->created_at->diffForHumans() }}
-                           </small>
-                        </p>
-                        <p class="card-text">{{ $post->excerpt }}</p>
-                        <div class="card-body d-flex flex-column mt-auto">
-                           <!-- Konten card-body di sini -->
-                           <a href="/posts/{{ $post->slug }}" class="btn btn-success">Read More...</a>
-                       </div>
-                     </div> --}}
                      <div class="card-body d-flex flex-column" style="min-height: 330px;">
                         <h5 class="card-title">{{ $post->title }}</h5>
                         <p>
-                            <small class="text-muted">By <a href="/community?author={{ $post->author->username }}" class="text-decoration-none">{{ $post->author->name }}</a> - {{ $post->created_at->diffForHumans() }}</small>
+                            <small class="text-muted">By <a href="/community?author={{ $post->author->name }}" class="text-decoration-none">{{ $post->author->name }}</a> - {{ $post->created_at->diffForHumans() }}</small>
                         </p>
                         <p class="card-text">{{ $post->excerpt }}</p>
                         <div class="mt-auto">

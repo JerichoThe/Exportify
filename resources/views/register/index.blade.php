@@ -8,6 +8,21 @@
             <h1>Register Form : </h1>
             <form action="/register" method="post">
                @csrf
+               <div class="form-floating mb-3">
+                  <select name="role" class="form-control @error('role') is-invalid @enderror" id="role" required>
+                     <option value="" disabled selected>Choose Role</option>
+                     @foreach ($roles as $role)
+                        <option value="{{ $role->id }}" @if ($role == old('role', $role->role_type)) selected="selected" @endif>
+                           {{ $role->role_type }}</option>
+                     @endforeach
+                  </select>
+                  <label for="role">Role</label>
+                  @error('role')
+                     <div class="invalid-feedback">
+                        {{ $message }}
+                     </div>
+                  @enderror
+               </div>
                <div class="form-floating">
                   <input type="text" name="name" class="form-control rounded-top @error('name') is-invalid @enderror"
                      required id="name" placeholder="name" value="{{ old('name') }}">
@@ -19,10 +34,10 @@
                   @enderror
                </div>
                <div class="form-floating">
-                  <input type="text" name="username" class="form-control @error('username') is-invalid @enderror"
-                     id="username" placeholder="username" required value="{{ old('username') }}">
-                  <label for="nausernameme">Username</label>
-                  @error('username')
+                  <input type="text" name="company_address" class="form-control @error('company_address') is-invalid @enderror"
+                     id="company_address" placeholder="Company Address" required value="{{ old('company_address') }}">
+                  <label for="nacompany_addressme">Company Address</label>
+                  @error('company_address')
                      <div class="invalid-feedback">
                         {{ $message }}
                      </div>

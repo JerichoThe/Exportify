@@ -21,11 +21,28 @@
     border-top-right-radius: 0;
 }
 
-.form-registration input{
-   border-radius: 0;
-   margin-bottom: -1px;
+.form-registration input {
+    border-radius: 0;
+    margin-bottom: -1px;
 }
 
 .custom-paginator .small.text-muted {
     color: white !important;
+}
+
+.row {
+    position: relative;
+}
+.separator {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: #fff;
+    transform: translateX(-50%);
+    padding: 0 !important;
+}
+.col {
+    padding: 20px;
 }
